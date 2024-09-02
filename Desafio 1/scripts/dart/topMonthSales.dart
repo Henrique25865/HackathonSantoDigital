@@ -1,8 +1,9 @@
+import 'dart:io';
 import 'package:sqlite3/sqlite3.dart';
 
 void main() {
-  // Conecta ao banco de dados
-  final db = sqlite3.open('../../db/AdventureWorksDataBase.sqlite');
+  // Conecte-se ao banco de dados
+  final Database db = sqlite3.open('${Directory.current.path}/db/AdventureWorksDataBase.sqlite');
 
   // Consulta SQL para calcular a receita total e a receita média por mês
   final result = db.select('''

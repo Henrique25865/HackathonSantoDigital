@@ -1,11 +1,9 @@
+import 'dart:io';
 import 'package:sqlite3/sqlite3.dart';
 
 void main() {
-  // Caminho para o arquivo do banco de dados
-  final dbPath = '../../db/AdventureWorksDataBase.sqlite';
-  
-  // Abrindo a conexão com o banco de dados
-  final database = sqlite3.open(dbPath);
+  // Conecte-se ao banco de dados
+  final Database db = sqlite3.open('${Directory.current.path}/db/AdventureWorksDataBase.sqlite');
 
   // Consultando os 10 produtos mais vendidos na categoria 'Bicicletas' para os anos de 2016 e 2017
   final query = '''
@@ -46,10 +44,10 @@ void main() {
     LIMIT 10;
   ''';
 
-  final result = database.select(query);
+  final result = db.select(query);
 
   // Fechando a conexão com o banco de dados
-  database.dispose();
+  db.dispose();
 
   // Exibindo os resultados
   print('Top 10 Produtos Mais Vendidos na Categoria "Bicicletas":');
